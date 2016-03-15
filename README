@@ -1,4 +1,4 @@
-Project Tracker
+C Project Tracker
 A project assistant that will allow creation of tasks that make up a project
 loosely following the ideas of Agile software development methodology. I hope
 to create a toolset that will help me understand where my time is spent so I
@@ -6,3 +6,8 @@ can better plan my work.
 
 Some major features I would like to include are task management, progress
 tracking, and estimate generation.
+
+This is largely an effort to on my part to practice writing plain C, with a
+focus on memory management.
+
+-Sean Southern
