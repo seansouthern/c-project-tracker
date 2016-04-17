@@ -30,8 +30,6 @@ void delete_node(LinkedList * list, Node * node)
 		node->next->prev = node->prev;
 	}
 	
-	//Deallocate nodes memory
-	destroy_node(node);
 }
 
 LinkedList * create_list()
@@ -52,7 +50,7 @@ void destroy_list(LinkedList * in_list)
 {
 	Node * node = in_list->head;
 	while(node->next != NULL){	
-		Node * next_node = node->next;
+		//Node * next_node = node->next;
 	        delete_node(in_list, node);
 	}
 	free(in_list);

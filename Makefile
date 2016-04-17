@@ -1,11 +1,25 @@
 CC=gcc
-SRCDIR=./src
+CORESRC=./src/core
 ODIR=./src
 EXDIR=./bin
+CLISRC=./src/cli
+LIBDIR=./lib
 
-trackermake: $(SRCDIR)/*.*
-	$(CC) -o $(EXDIR)/storytest $(SRCDIR)/main.c -I $(SRCDIR)
+
+all: tests core 
 
 clean:
 	-rm $(SRCDIR)/*.o
 	-rm $(EXDIR)/*.exe
+	-rm $(CLISRC)/*.o
+
+core:
+	$(CC) -o $(EXDIR)/core $(CORESRC)/main.c -I$(CORESRC)
+	$(CC) -o $(EXDIR)/cli  $(CLISRC)/cli.c -lncurses -lpanel -I$(CLISRC)
+
+
+tests:
+
+
+
+

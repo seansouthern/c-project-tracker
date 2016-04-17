@@ -1,12 +1,25 @@
+#include "card.c"
+#include "linkedlist.h"
 
 typedef struct {
-	Story * story;
-	// Undo/redo command structures will be in Card type
-} Card;
+	char * name;
+	LinkedList * cards;
+} Board;
+
+
+char * get_board_name(Board * in_board)
+{
+	return in_board->name;
+}
+
+void set_board_name(Board * in_board, char * in_name)
+{
+	in_board->name = in_name;
+}
+
 
 void destroy_card(Card * in_card)
 {
-	//Free allocated memory
 	destroy_story(in_card->story);
 	free(in_card);
 }
@@ -26,23 +39,7 @@ Card * create_card(Board * in_board)
 	ptr_card->story = ptr_story;
 
 	//Cards must belong to a Board
-	void (*destruct_func)(Card *);
-	destruct_func = &destroy_card;
-	Node * ptr_card_node = create_node(ptr_card, destruct_func);	
+	Node * ptr_card_node = create_node(ptr_card);	
 	insert_node(in_board->cards, ptr_card_node);
 	return ptr_card;
 }
-
-
-
-/*
-Board * get_board(Card * in_card)
-{
-	return in_card->owner_board;
-}
-
-void set_board(Card * in_card, Board * in_board)
-{
-	in_card->owner_board = in_board;
-}
-*/

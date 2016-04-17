@@ -34,22 +34,22 @@ void destroy_story(Story * in_story)
 	free(in_story);
 }
 
-char * get_title(Story * in_story)
+char * get_story_title(Story * in_story)
 {
 	return in_story->title;
 }
 
-void set_title(Story * in_story, char * in_title)
+void set_story_title(Story * in_story, char * in_title)
 {
 	in_story->title = in_title;
 }
 
-char * get_description(Story * in_story)
+char * get_story_description(Story * in_story)
 {
 	return in_story->description;
 }
 
-void set_description(Story * in_story, char * in_description)
+void set_story_description(Story * in_story, char * in_description)
 {
 	in_story->description = in_description;
 }
