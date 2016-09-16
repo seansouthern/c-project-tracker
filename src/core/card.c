@@ -18,25 +18,30 @@ void card_set_description(Card * in_card, char * in_description)
 {
 	story_set_description(in_card->story, in_description);
 }
-void card_destroy(Card * in_card)
+
+void card_destroy_story(Card * in_card)
 {
-	story_destroy(in_card->story);
-	free(in_card);
+	free(in_card->story);
 }
 
-//Takes Board arg, cards must belong to a board
-Card * card_create( void )
+
+Story *  card_create_story()
 {
-	//Allocated memory and initializes story
-	Story * ptr_story = story_create();
-	//Allocate memory for Card and error checking
-	Card * ptr_card = calloc(1, sizeof(Card));
-	if (NULL == ptr_card) {
-		fprintf(stderr, "calloc failed for Card object\n");
-		return((Card *)-1);
+	//Allocate memory, check for error
+	Story * ptr_story = calloc(1, sizeof(Story));
+	if (NULL == ptr_story) {
+		fprintf(stderr, "calloc failed for Story object\n");
+		return((Story *)-1);
 	}
-
-	ptr_card->story = ptr_story;
-
-	return ptr_card;
+	
+	//Initialize to empty values
+	ptr_story->title =  '\0';
+	ptr_story->description = '\0';
+	ptr_story->time_created =  time(NULL);
+	ptr_story->points = 0;
+	
+	return ptr_story;
 }
+
+
+

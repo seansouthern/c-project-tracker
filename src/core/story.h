@@ -12,8 +12,7 @@ typedef struct {
 	int points;
 } Story;
 
-Story * story_create( void );
-void story_destroy(Story * in_story);
+
 char * story_get_title(Story * in_story);
 void story_set_title(Story * in_story, char * in_title);
 char * story_get_description(Story * in_story);

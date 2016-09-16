@@ -21,7 +21,7 @@ typedef struct {
 } ProjectAttributes;
 
 
-void project_delete_board(Board * in_board);
+void project_destroy_board(Board * in_board);
 Board * project_create_board(Project * in_project);
 char * project_get_name(Project * in_project);
 void project_set_name(Project * in_project, char * in_name);

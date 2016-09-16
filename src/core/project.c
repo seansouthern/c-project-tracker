@@ -6,19 +6,41 @@
 #include "linkedlist.h"
 #endif
 
-void project_delete_board(Board * in_board)
+void project_destroy_board(Board * in_board)
 {
-	board_destroy(in_board);
+	// TODO:Iterate through Board LL freeing everything.
+	Node * head = in_board->cards->head;
+	if(head != NULL){
+		do{
+			board_destroy_card(head->data);
+			free(head);
+		}while(head->next != NULL);   
+	}
+	else{
+		printf("Error:Tried to free empty list in destroy_board\n\n");
+	}
+	free(in_board);
+	
 }
 Board * project_create_board(Project * in_project)
 {
-	Board * board_ptr = board_create();
+
+	//Allocate memory, check for error
+	Board * ptr_board = calloc(1, sizeof(Board));
+	if (NULL == ptr_board) {
+		fprintf(stderr, "calloc failed for Board object\n");
+		return((Board *)-1);
+	}
+
+	ptr_board->name = '\0';
+	ptr_board->cards = list_create();
+
 
 	//Boards must belong to a Project
-	Node * ptr_board_node = node_create(board_ptr);
+	Node * ptr_board_node = node_create(ptr_board);
 	list_insert_node(in_project->boards, ptr_board_node);
 
-	return board_ptr;
+	return ptr_board;
 }
 
 char * project_get_name(Project * in_project)

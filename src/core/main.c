@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 	else{
 		printf("%p is project pointer", project);
 		
-		Card * card = card_create();
+		Card * card = board_create_card(project_create_board(project));
 
 		printf("\n%s is old title\n", card_get_title(card));
 	

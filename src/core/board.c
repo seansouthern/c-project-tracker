@@ -6,38 +6,34 @@
 #include "linkedlist.h"
 #endif
 
-void board_destroy(Board * in_board)
+
+Card * board_create_card( Board * in_board )
 {
-	Node * head = in_board->cards->head;
-	if(head != NULL){
-		do{
-			card_destroy(head->data);
-			free(head);
-		}while(head->next != NULL);   
+	//Allocate memory for Card and error checking
+	Card * ptr_card = calloc(1, sizeof(Card));
+	if (NULL == ptr_card) {
+		fprintf(stderr, "calloc failed for Card object\n");
+		return((Card *)-1);
 	}
-	else{
-		printf("Error:Tried to free empty list in destroy_board\n\n");
-	}
-	free(in_board);
-}
+	
+	ptr_card->story = card_create_story();
 
-Board * board_create()
-{
-	//Allocate memory, check for error
-	Board * ptr_board = calloc(1, sizeof(Board));
-	if (NULL == ptr_board) {
-		fprintf(stderr, "calloc failed for Board object\n");
-		return((Board *)-1);
-	}
-
-	ptr_board->name = '\0';
-	ptr_board->cards = list_create();
-
-	return ptr_board;
+	return ptr_card;
 }
 
 
-
+void board_destroy_card(Card * in_card)
+{
+	card_destroy_story(in_card);
+	free(in_card);
+}
+/*
+void board_destroy_all_cards(Board * in_board)
+{
+	//TODO: Destroy all cards in the board, freeing all memory
+	
+}
+*/
 char * board_get_name(Board * in_board)
 {
 	return in_board->name;

@@ -1,30 +1,7 @@
-
 #ifndef STORY_INC
 #include "story.h"
 #endif
 
-Story * story_create()
-{
-	//Allocate memory, check for error
-	Story * ptr_story = calloc(1, sizeof(Story));
-	if (NULL == ptr_story) {
-		fprintf(stderr, "calloc failed for Story object\n");
-		return((Story *)-1);
-	}
-	
-	//Initialize to empty values
-	ptr_story->title =  '\0';
-	ptr_story->description = '\0';
-	ptr_story->time_created =  time(NULL);
-	ptr_story->points = 0;
-	
-	return ptr_story;
-}
-
-void story_destroy(Story * in_story)
-{
-	free(in_story);
-}
 
 char * story_get_title(Story * in_story)
 {

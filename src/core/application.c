@@ -40,7 +40,7 @@ void application_destroy_project(Project * in_project)
 	Node * head = in_project->boards->head;
 	if(head != NULL){
 		do{
-			board_destroy(head->data);
+			project_destroy_board(head->data);
 			free(head);
 		}while (head->next != NULL);
 	}
@@ -50,6 +50,11 @@ void application_destroy_project(Project * in_project)
 	free(in_project);
 }
 	
+void application_destroy_all_projects(Application * in_app)
+{
+	//TODO: Destroy all projects, freeing their memory
+}
+
 
 
 Project * project_open(char * in_filename)
