@@ -1,19 +1,4 @@
-#define CARD_INC
-
-#ifndef STORY_INC
-#include "story.c"
-#endif
-
-
-typedef struct {
-	Story * story;
-	// Undo/redo command structures will be in Card type
-} Card;
-
-typedef struct {
-	
-
-} CardAttributes;
+#include "card.h"
 
 char * card_get_title(Card * in_card)
 {

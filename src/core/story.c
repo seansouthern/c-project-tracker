@@ -5,13 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-typedef struct {
-	char * title;
-	char * description;
-	time_t time_created;
-	int points;
-} Story;
+#include "story.h"
 
 Story * story_create()
 {
