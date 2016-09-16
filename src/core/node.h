@@ -1,3 +1,5 @@
+#define NODE_INC
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,7 +11,7 @@ typedef struct Node {
 
 typedef void (*t_destructor)(Node*);
 
-Node * create_node(void * in_data)
+Node * node_create(void * in_data)
 {
 	//Allocate memory, check for error
 	Node * ptr_node = calloc(1, sizeof(Node));

@@ -4,14 +4,12 @@ ODIR=./src
 EXDIR=./bin
 CLISRC=./src/cli
 LIBDIR=./lib
-
+BINDIR=./bin
 
 all: tests core 
 
 clean:
-	-rm $(SRCDIR)/*.o
-	-rm $(EXDIR)/*.exe
-	-rm $(CLISRC)/*.o
+	-rm $(BINDIR)/*
 
 core:
 	$(CC) -o $(EXDIR)/core $(CORESRC)/main.c -I$(CORESRC)

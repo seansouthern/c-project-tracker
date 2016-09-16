@@ -1,4 +1,8 @@
+#define LINKEDLIST_INC
+
+#ifndef NODE_INC
 #include "node.h"
+#endif
 
 typedef struct  {
 	Node * head;
@@ -7,7 +11,7 @@ typedef struct  {
 } LinkedList;
 
 
-void insert_node(LinkedList * list, Node * node)
+void list_insert_node(LinkedList * list, Node * node)
 {
 	node->next = list->head;
 	if(list->head != NULL){
@@ -18,7 +22,7 @@ void insert_node(LinkedList * list, Node * node)
         
 }
 
-void delete_node(LinkedList * list, Node * node)
+void list_delete_node(LinkedList * list, Node * node)
 {
         if(node->prev != NULL){
 		node->prev->next = node->next;
@@ -32,7 +36,7 @@ void delete_node(LinkedList * list, Node * node)
 	
 }
 
-LinkedList * create_list()
+LinkedList * list_create()
 {
 	//Allocated memory and initializes list
 	LinkedList * ptr_list = calloc(1, sizeof(LinkedList));
@@ -46,12 +50,12 @@ LinkedList * create_list()
 }
 
 
-void destroy_list(LinkedList * in_list)
+void list_destroy(LinkedList * in_list)
 {
 	Node * node = in_list->head;
 	while(node->next != NULL){	
 		//Node * next_node = node->next;
-	        delete_node(in_list, node);
+	        list_delete_node(in_list, node);
 	}
 	free(in_list);
 }

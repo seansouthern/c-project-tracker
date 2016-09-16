@@ -1,36 +1,43 @@
 #include "linkedlist.h"
-#include "story.c"
-#include "project.c"
-#include "board.c"
-#include "card.c"
 #include "application.c"
 
 
 void start_application(void)
 {
+
+	Application * app = application_init();		   
+	
 	char * project_name = "Project Name";
-	Project * project = create_project(project_name);
+	char * project_description = "Description of the project.";
+	Project * project = application_create_project(app, project_name, project_description);
 	if(project == NULL){
-		printf("project is NULL!");
+		printf("project is NULL!\n\n");
 	}
 	else{
 		printf("%p is project pointer", project);
 		
-		Board * board = create_board(project);
-		Card * card = create_card(board);
+		Board * board = board_create(project);
+		Card * card = card_create(board);
 
-		printf("\n%s is old title\n", get_title(card->story));
+		printf("\n%s is old title\n", card_get_title(card));
 	
 		char * title = "Some new title";
-		set_title(card->story, title);
+		card_set_title(card, title);
 
-		printf("\n%s is new title\n", get_title(card->story));
+		printf("\n%s is new title\n", card_get_title(card));
 
 		//Free all the memory
-		destroy_project(project);
+		application_destroy_project(project);
 	}
 	return;
 }
 
+
+
+int main(int argc, char** argv)
+{
+	start_application();
+	return 0;
+}
 
 

@@ -1,17 +1,19 @@
+#define STORY_INC
+
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
 
+
 typedef struct {
 	char * title;
 	char * description;
 	time_t time_created;
-	int points;	
+	int points;
 } Story;
 
-
-Story * create_story()
+Story * story_create()
 {
 	//Allocate memory, check for error
 	Story * ptr_story = calloc(1, sizeof(Story));
@@ -29,42 +31,42 @@ Story * create_story()
 	return ptr_story;
 }
 
-void destroy_story(Story * in_story)
+void story_destroy(Story * in_story)
 {
 	free(in_story);
 }
 
-char * get_story_title(Story * in_story)
+char * story_get_title(Story * in_story)
 {
 	return in_story->title;
 }
 
-void set_story_title(Story * in_story, char * in_title)
+void story_set_title(Story * in_story, char * in_title)
 {
 	in_story->title = in_title;
 }
 
-char * get_story_description(Story * in_story)
+char * story_get_description(Story * in_story)
 {
 	return in_story->description;
 }
 
-void set_story_description(Story * in_story, char * in_description)
+void story_set_description(Story * in_story, char * in_description)
 {
 	in_story->description = in_description;
 }
 
-int get_points(Story * in_story)
+int story_get_points(Story * in_story)
 {
 	return in_story->points;
 }
 
-void set_points(Story * in_story, int in_points)
+void story_set_points(Story * in_story, int in_points)
 {
 	in_story->points = in_points;
 }
 
-time_t get_time_created(Story * in_story)
+time_t story_get_time_created(Story * in_story)
 {
 	return in_story->time_created;
 }

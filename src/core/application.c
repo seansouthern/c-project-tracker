@@ -1,25 +1,40 @@
+#define APPLICATION_INC
+
+#ifndef PROJECT_INC
 #include "project.c"
+#endif
 
 typedef struct {
 	LinkedList * projects; 
 } Application;
 
+typedef struct {
+	time_t application_time_started;
+	
+} ApplicationAttributes;
 
-void start_application()
+Application * application_init()
 {
-	//Perform any initialization
-
+	Application * app = calloc(1, sizeof(Application));
+	app->projects = list_create();
+	return app;
 }
 
-void quit_application()
+/*void application_start()
+{
+	//Perform any initialization
+	
+	
+}
+
+void application_quit()
 {
 	//Perform any destruction 
 
 }
+*/
 
-
-Project * create_project(LinkedList * in_projects, char * in_name,
-			 char * in_description)
+Project * application_create_project(Application * in_app, char * in_name, char * in_description)
 {
 	//Allocated memory and initializes project
 	Project * ptr_project = calloc(1, sizeof(Project));
@@ -27,21 +42,21 @@ Project * create_project(LinkedList * in_projects, char * in_name,
 		fprintf(stderr, "calloc failed for Project object\n");
 		return((Project *)-1);
 	}
-	ptr_project->boards = create_list();
+	ptr_project->boards = list_create();
 	ptr_project->name = in_name;
 	ptr_project->description = in_description; 
 
-	insert_node(in_projects,create_node(ptr_project));
+	list_insert_node(in_app->projects, node_create(ptr_project));
 	return ptr_project;
 }
 
 
-void destroy_project(Project * in_project)
+void application_destroy_project(Project * in_project)
 {
 	Node * head = in_project->boards->head;
 	if(head != NULL){
 		do{
-			destroy_board(head->data);
+			board_destroy(head->data);
 			free(head);
 		}while (head->next != NULL);
 	}
@@ -53,7 +68,7 @@ void destroy_project(Project * in_project)
 	
 
 
-Project * open_project(char * in_filename)
+Project * project_open(char * in_filename)
 {
 
 	Project * opened_project = calloc(1, sizeof(Project));
@@ -71,7 +86,7 @@ Project * open_project(char * in_filename)
 	return opened_project;
 }
 
-void save_project(Project * in_project, char * in_filename)
+void project_save(Project * in_project, char * in_filename)
 {
 	FILE * save_file = fopen(in_filename, "wb");
 	if(save_file!= NULL){
@@ -81,7 +96,7 @@ void save_project(Project * in_project, char * in_filename)
 	return;
 }
 
-void delete_project(char * in_filename)
+void project_delete(char * in_filename)
 {
 	int ret;
 	ret = remove(in_filename);
