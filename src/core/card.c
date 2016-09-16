@@ -25,7 +25,7 @@ void card_destroy_story(Card * in_card)
 }
 
 
-Story *  card_create_story()
+Story * card_create_story()
 {
 	//Allocate memory, check for error
 	Story * ptr_story = calloc(1, sizeof(Story));

@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 typedef struct Node {
-	struct Node* next;
-	struct Node* prev;
+	struct Node * next;
+	struct Node * prev;
 	void * data;
 } Node;
 

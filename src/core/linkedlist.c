@@ -13,7 +13,7 @@ void list_insert_node(LinkedList * list, Node * node)
         
 }
 
-void list_delete_node(LinkedList * list, Node * node)
+int list_delete_node(LinkedList * list, Node * node)
 {
         if(node->prev != NULL){
 		node->prev->next = node->next;
@@ -24,7 +24,8 @@ void list_delete_node(LinkedList * list, Node * node)
 	if(node->next != NULL){
 		node->next->prev = node->prev;
 	}
-	
+	free(node);
+	return 0;
 }
 
 LinkedList * list_create()
@@ -41,12 +42,31 @@ LinkedList * list_create()
 }
 
 
+
+
+
+int traverse(LinkedList * in_list, int (*ptr_func)(LinkedList * l, Node * n))
+{
+	Node * x = list_get_head(in_list);
+	while(x != NULL){
+		ptr_func(in_list, x);
+		x = x->next;
+	}
+	return 0;
+}
+
+Node * list_get_head(LinkedList * in_list)
+{
+	return in_list->head;
+}
+
+Node * list_get_tail(LinkedList * in_list)
+{
+	return in_list->tail;
+}
+
 void list_destroy(LinkedList * in_list)
 {
-	Node * node = in_list->head;
-	while(node->next != NULL){	
-		//Node * next_node = node->next;
-	        list_delete_node(in_list, node);
-	}
+        traverse(in_list,list_delete_node);
 	free(in_list);
 }

@@ -17,7 +17,7 @@ void project_destroy_board(Board * in_board)
 		}while(head->next != NULL);   
 	}
 	else{
-		printf("Error:Tried to free empty list in destroy_board\n\n");
+		printf("Error:Tried to free empty list in project_destroy_board\n\n");
 	}
 	free(in_board);
 	
