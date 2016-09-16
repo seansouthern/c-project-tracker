@@ -1,7 +1,7 @@
 #define BOARD_INC
 
 #ifndef CARD_INC
-#include "card.c"
+#include "card.h"
 #endif
 
 #ifndef LINKEDLIST_INC

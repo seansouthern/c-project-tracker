@@ -1,32 +1,18 @@
-#define PROJECT_INC
-
-#ifndef BOARD_INC
-#include "board.c"
-#endif
-
-typedef struct {
-	char * name;
-	char * description;
-	LinkedList * boards;
-} Project;
-
-typedef struct {
-	char * name;
-	char * description;
-
-} ProjectAttributes;
+#include "project.h"
 
 void project_delete_board(Board * in_board)
 {
 	board_destroy(in_board);
 }
-Board * project_create_board(Project * in_project)//, BoardAttributes * in_board_attributes)
+Board * project_create_board(Project * in_project)
 {
-	Board * board_ptr = board_create(in_project);
+	Board * board_ptr = board_create();
 
 	//Boards must belong to a Project
 	Node * ptr_board_node = node_create(board_ptr);
 	list_insert_node(in_project->boards, ptr_board_node);
+
+	return board_ptr;
 }
 
 char * project_get_name(Project * in_project)
