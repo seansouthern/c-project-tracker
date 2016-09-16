@@ -1,25 +1,5 @@
-#define BOARD_INC
+#include "board.h"
 
-#ifndef CARD_INC
-#include "card.c"
-#endif
-
-#ifndef LINKEDLIST_INC
-#include "linkedlist.h"
-#endif
-
-
-typedef struct {
-	char * name;
-	char * description;
-	LinkedList * cards;
-} Board;
-
-typedef struct {
-	char * name;
-	char * description;
-
-} BoardAttributes;
 
 void board_destroy(Board * in_board)
 {
