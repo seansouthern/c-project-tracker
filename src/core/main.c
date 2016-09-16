@@ -1,5 +1,5 @@
 #include "linkedlist.h"
-#include "application.c"
+#include "application.h"
 
 
 void start_application(void)
@@ -16,8 +16,7 @@ void start_application(void)
 	else{
 		printf("%p is project pointer", project);
 		
-		Board * board = board_create(project);
-		Card * card = card_create(board);
+		Card * card = card_create();
 
 		printf("\n%s is old title\n", card_get_title(card));
 	

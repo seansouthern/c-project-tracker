@@ -1,17 +1,5 @@
-#define APPLICATION_INC
+#include "application.h"
 
-#ifndef PROJECT_INC
-#include "project.c"
-#endif
-
-typedef struct {
-	LinkedList * projects; 
-} Application;
-
-typedef struct {
-	time_t application_time_started;
-	
-} ApplicationAttributes;
 
 Application * application_init()
 {
@@ -61,7 +49,7 @@ void application_destroy_project(Project * in_project)
 		}while (head->next != NULL);
 	}
 	else{
-		printf("\nError:Tried to free empty list in destroy_project");
+		printf("Error:Tried to free empty list in destroy_project\n\n");
 	}
 	free(in_project);
 }

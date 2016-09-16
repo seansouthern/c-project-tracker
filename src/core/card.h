@@ -18,5 +18,7 @@ char * card_get_title(Card * in_card);
 void card_set_title(Card * in_card, char * in_title);
 char * card_get_description(Card * in_card);
 void card_set_description(Card * in_card, char * in_description);
-void card_destroy(Card * in_card);
 Card * card_create( void );
+
+void card_destroy(Card * in_card);
+
