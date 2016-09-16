@@ -1,12 +1,13 @@
 #define APPLICATION_INC
 
+#ifndef LINKEDLIST_INC
+#include "linkedlist.h"
+#endif
+
 #ifndef PROJECT_INC
 #include "project.h"
 #endif
 
-#ifndef LINKEDLIST_INC
-#include "linkedlist.h"
-#endif
 
 
 typedef struct {
@@ -26,3 +27,4 @@ Project * project_open(char * in_filename);
 void project_save(Project * in_project, char * in_filename);
 void project_delete(char * in_filename);
 
+#include "application.c"

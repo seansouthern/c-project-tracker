@@ -1,11 +1,7 @@
-#define STORY_INC
 
-#include <string.h>
-#include <time.h>
-#include <stdlib.h>
-#include <stdio.h>
-
+#ifndef STORY_INC
 #include "story.h"
+#endif
 
 Story * story_create()
 {

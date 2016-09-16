@@ -1,4 +1,14 @@
+#ifndef LINKEDLIST_INC
+#include "linkedlist.h"
+#endif
+
+#ifndef NODE_INC
+#include "node.h"
+#endif
+
+#ifndef APPLICATION_INC
 #include "application.h"
+#endif
 
 
 Application * application_init()
@@ -7,20 +17,6 @@ Application * application_init()
 	app->projects = list_create();
 	return app;
 }
-
-/*void application_start()
-{
-	//Perform any initialization
-	
-	
-}
-
-void application_quit()
-{
-	//Perform any destruction 
-
-}
-*/
 
 Project * application_create_project(Application * in_app, char * in_name, char * in_description)
 {

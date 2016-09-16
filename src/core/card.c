@@ -1,4 +1,6 @@
+#ifndef CARD_INC
 #include "card.h"
+#endif
 
 char * card_get_title(Card * in_card)
 {
@@ -23,7 +25,7 @@ void card_destroy(Card * in_card)
 }
 
 //Takes Board arg, cards must belong to a board
-Card * card_create( )//CardAttributes * in_card_attributes)
+Card * card_create( void )
 {
 	//Allocated memory and initializes story
 	Story * ptr_story = story_create();

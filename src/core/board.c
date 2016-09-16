@@ -1,5 +1,10 @@
+#ifndef BOARD_INC
 #include "board.h"
+#endif
 
+#ifndef LINKEDLIST_INC
+#include "linkedlist.h"
+#endif
 
 void board_destroy(Board * in_board)
 {
@@ -11,7 +16,7 @@ void board_destroy(Board * in_board)
 		}while(head->next != NULL);   
 	}
 	else{
-		printf("\nError:Tried to free empty list in destroy_board");
+		printf("Error:Tried to free empty list in destroy_board\n\n");
 	}
 	free(in_board);
 }

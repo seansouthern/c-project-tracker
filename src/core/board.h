@@ -28,3 +28,6 @@ char * board_get_name(Board * in_board);
 void board_set_name(Board * in_board, char * in_name);
 char * board_get_description(Board * in_board);
 void board_set_description(Board * in_board, char * in_description);
+
+
+#include "board.c"

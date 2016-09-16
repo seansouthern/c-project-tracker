@@ -1,11 +1,13 @@
-#include "linkedlist.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
 #include "application.h"
 
-
-void start_application(void)
+int main(int argc, char** argv)
 {
 
-	Application * app = application_init();		   
+       	Application * app = application_init();		   
 	
 	char * project_name = "Project Name";
 	char * project_description = "Description of the project.";
@@ -28,14 +30,8 @@ void start_application(void)
 		//Free all the memory
 		application_destroy_project(project);
 	}
-	return;
-}
 
-
-
-int main(int argc, char** argv)
-{
-	start_application();
+	
 	return 0;
 }
 

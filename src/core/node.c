@@ -1,4 +1,6 @@
+#ifndef NODE_INC
 #include "node.h"
+#endif
 
 Node * node_create(void * in_data)
 {

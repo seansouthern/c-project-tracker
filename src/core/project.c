@@ -1,4 +1,10 @@
+#ifndef PROJECT_INC
 #include "project.h"
+#endif
+
+#ifndef LINKEDLIST_INC
+#include "linkedlist.h"
+#endif
 
 void project_delete_board(Board * in_board)
 {

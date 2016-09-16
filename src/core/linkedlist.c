@@ -1,4 +1,6 @@
+#ifndef LINKEDLIST_INC
 #include "linkedlist.h"
+#endif
 
 void list_insert_node(LinkedList * list, Node * node)
 {
