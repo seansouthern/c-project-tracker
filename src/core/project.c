@@ -6,22 +6,19 @@
 #include "linkedlist.h"
 #endif
 
-void project_destroy_board(Board * in_board)
+int project_destroy_board(LinkedList * in_board, Node * in_board_node)
 {
-	// TODO:Iterate through Board LL freeing everything.
-	Node * head = in_board->cards->head;
-	if(head != NULL){
-		do{
-			board_destroy_card(head->data);
-			free(head);
-		}while(head->next != NULL);   
-	}
-	else{
-		printf("Error:Tried to free empty list in project_destroy_board\n\n");
-	}
+	// Traverse through all cards in board, destroying each
+	board_destroy_all_cards(in_board_node->data);
 	free(in_board);
-	
+	return 0;	
 }
+
+void project_destroy_all_boards(Project * in_project)
+{
+	list_destroy(in_project->boards, project_destroy_board);
+}
+
 Board * project_create_board(Project * in_project)
 {
 
@@ -37,7 +34,7 @@ Board * project_create_board(Project * in_project)
 
 
 	//Boards must belong to a Project
-	Node * ptr_board_node = node_create(ptr_board);
+	Node * ptr_board_node = list_create_node(ptr_board);
 	list_insert_node(in_project->boards, ptr_board_node);
 
 	return ptr_board;

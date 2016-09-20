@@ -18,6 +18,12 @@ Application * application_init()
 	return app;
 }
 
+void application_destructor(Application * in_app)
+{
+	application_destroy_all_projects(in_app);
+	free(in_app);
+}
+
 Project * application_create_project(Application * in_app, char * in_name, char * in_description)
 {
 	//Allocated memory and initializes project
@@ -30,32 +36,34 @@ Project * application_create_project(Application * in_app, char * in_name, char 
 	ptr_project->name = in_name;
 	ptr_project->description = in_description; 
 
-	list_insert_node(in_app->projects, node_create(ptr_project));
+	//Inform it of its place in the list
+	ptr_project->list_node = list_create_node(ptr_project);
+
+	// Stuff user data into node and add it to beginning of LL
+	list_insert_node(in_app->projects, ptr_project->list_node);
+
 	return ptr_project;
 }
 
 
-void application_destroy_project(Project * in_project)
+int destroy_project(Application * in_app, char * in_proj_name)
 {
-	Node * head = in_project->boards->head;
-	if(head != NULL){
-		do{
-			project_destroy_board(head->data);
-			free(head);
-		}while (head->next != NULL);
-	}
-	else{
-		printf("Error:Tried to free empty list in destroy_project\n\n");
-	}
-	free(in_project);
+	//traverse(in_app->projects, );
+	return 0;
+}
+
+int application_destroy_project(LinkedList * in_projects, Node * in_project_node)
+{       
+	// Iterates through boards destroying,then destroys the project struct
+	project_destroy_all_boards(in_project_node->data);
+	free(in_project_node->data);
+	return 0;
 }
 	
 void application_destroy_all_projects(Application * in_app)
 {
-	//TODO: Destroy all projects, freeing their memory
+	list_destroy(in_app->projects, application_destroy_project);
 }
-
-
 
 Project * project_open(char * in_filename)
 {

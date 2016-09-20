@@ -11,6 +11,4 @@ typedef struct Node {
 
 typedef void (*t_destructor)(Node*);
 
-Node * node_create(void * in_data);
-
 #include "node.c"

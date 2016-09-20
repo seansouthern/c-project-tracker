@@ -7,29 +7,17 @@
 int main(int argc, char** argv)
 {
 
-       	Application * app = application_init();		   
-	
-	char * project_name = "Project Name";
-	char * project_description = "Description of the project.";
-	Project * project = application_create_project(app, project_name, project_description);
-	if(project == NULL){
-		printf("project is NULL!\n\n");
-	}
-	else{
-		printf("%p is project pointer", project);
-		
-		Card * card = board_create_card(project_create_board(project));
+	printf("Compiled.\n\n");
+	char c = getchar();
 
-		printf("\n%s is old title\n", card_get_title(card));
-	
-		char * title = "Some new title";
-		card_set_title(card, title);
+	Application * app = application_init();
+	application_destructor(app);
 
-		printf("\n%s is new title\n", card_get_title(card));
+	Project * my_proj = application_create_project(app, "My proj", "This is my proj.");
+	application_destroy_all_projects(app);
 
-		//Free all the memory
-		application_destroy_project(project);
-	}
+	printf("Work done.\n\n");
+	c = getchar();
 
 	
 	return 0;

@@ -22,7 +22,7 @@ typedef struct {
 
 Application * application_init( void );
 Project * application_create_project(Application * in_app, char * in_name, char * in_description);
-void application_destroy_project(Project * in_project);
+int  application_destroy_project(LinkedList * in_projects, Node * in_project_node);
 void application_destroy_all_projects( Application * in_app );
 Project * project_open(char * in_filename);
 void project_save(Project * in_project, char * in_filename);

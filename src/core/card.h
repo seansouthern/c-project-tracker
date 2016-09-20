@@ -4,8 +4,13 @@
 #include "story.h"
 #endif
 
+#ifndef NODE_INC
+#include "node.h"
+#endif
+
 typedef struct {
 	Story * story;
+	Node * card_node;
 	// Undo/redo command structures will be in Card type
 } Card;
 

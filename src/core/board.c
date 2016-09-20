@@ -22,18 +22,19 @@ Card * board_create_card( Board * in_board )
 }
 
 
-void board_destroy_card(Card * in_card)
+int board_destroy_card(LinkedList * in_list, Node * in_node)
 {
+	Card * in_card = in_node->data; 
 	card_destroy_story(in_card);
 	free(in_card);
+	return 0;
 }
-/*
+
 void board_destroy_all_cards(Board * in_board)
 {
-	//TODO: Destroy all cards in the board, freeing all memory
-	
+        list_destroy(in_board->cards, board_destroy_card);
 }
-*/
+
 char * board_get_name(Board * in_board)
 {
 	return in_board->name;

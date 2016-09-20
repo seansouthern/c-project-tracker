@@ -12,6 +12,7 @@ typedef struct {
 	char * name;
 	char * description;
 	LinkedList * boards;
+	Node * list_node;
 } Project;
 
 typedef struct {
@@ -21,7 +22,7 @@ typedef struct {
 } ProjectAttributes;
 
 
-void project_destroy_board(Board * in_board);
+int project_destroy_board(LinkedList * in_board, Node * in_board_node);
 Board * project_create_board(Project * in_project);
 char * project_get_name(Project * in_project);
 void project_set_name(Project * in_project, char * in_name);

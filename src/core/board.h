@@ -13,6 +13,7 @@ typedef struct {
 	char * name;
 	char * description;
 	LinkedList * cards;
+	Node * board_node;
 } Board;
 
 typedef struct {
@@ -22,7 +23,8 @@ typedef struct {
 } BoardAttributes;
 
 
-void board_destroy_card(Card * in_card);
+
+int board_destroy_card(LinkedList * in_list, Node * in_node);
 Card * board_create_card( Board * in_board );
 void board_destroy_all_cards(Board * in_board);
 char * board_get_name(Board * in_board);
