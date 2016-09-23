@@ -8,14 +8,15 @@
 
 int project_destroy_board(LinkedList * in_board, Node * in_board_node)
 {
-	// Traverse through all cards in board, destroying each
+	printf("Entered project_destroy_board...\n");
 	board_destroy_all_cards(in_board_node->data);
-	free(in_board);
+	free(in_board_node->data);
 	return 0;	
 }
 
 void project_destroy_all_boards(Project * in_project)
 {
+	printf("Entered project_destroy_all_boards...\n");
 	list_destroy(in_project->boards, project_destroy_board);
 }
 
@@ -25,7 +26,7 @@ Board * project_create_board(Project * in_project)
 	//Allocate memory, check for error
 	Board * ptr_board = calloc(1, sizeof(Board));
 	if (NULL == ptr_board) {
-		fprintf(stderr, "calloc failed for Board object\n");
+		fprintf(stdout, "calloc failed for Board object\n");
 		return((Board *)-1);
 	}
 

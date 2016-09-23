@@ -16,22 +16,28 @@ Card * board_create_card( Board * in_board )
 		return((Card *)-1);
 	}
 	
-	ptr_card->story = card_create_story();
+	ptr_card->story = card_create_story(ptr_card);
 
+	//Cards must belong to a project
+	Node * ptr_card_node = list_create_node(ptr_card);
+	list_insert_node(in_board->cards, ptr_card_node);
+	
 	return ptr_card;
 }
 
 
-int board_destroy_card(LinkedList * in_list, Node * in_node)
+int board_destroy_card(LinkedList * in_list, Node * in_card_node)
 {
-	Card * in_card = in_node->data; 
-	card_destroy_story(in_card);
-	free(in_card);
+	printf("Entered board_destroy_card...\n");
+	card_destroy_story(in_card_node->data);
+	free(in_card_node->data);
 	return 0;
 }
 
 void board_destroy_all_cards(Board * in_board)
 {
+	printf("Entered board_destroy_all_cards...\n");
+	//traverse(in_board->cards, list_print_node);
         list_destroy(in_board->cards, board_destroy_card);
 }
 

@@ -6,7 +6,6 @@
 
 typedef struct  {
 	Node * head;
-	Node * tail;
 	int size;
 } LinkedList;
 

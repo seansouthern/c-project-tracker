@@ -13,7 +13,7 @@ typedef struct {
 	char * name;
 	char * description;
 	LinkedList * cards;
-	Node * board_node;
+//	Node * board_node;
 } Board;
 
 typedef struct {

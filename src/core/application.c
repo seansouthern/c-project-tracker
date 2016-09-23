@@ -26,22 +26,30 @@ void application_destructor(Application * in_app)
 
 Project * application_create_project(Application * in_app, char * in_name, char * in_description)
 {
-	//Allocated memory and initializes project
+	unsigned long ptr = (unsigned long)in_app;
+	printf("%lx is the in_app pointer argument in application_create_project\n", ptr);
+
 	Project * ptr_project = calloc(1, sizeof(Project));
+     
+	unsigned long proj=(unsigned long)ptr_project;
+       	printf("%lx is the ptr_project pointer calloced in application_create_project\n", proj);
 	if ( ptr_project == NULL) {
 		fprintf(stderr, "calloc failed for Project object\n");
 		return((Project *)-1);
 	}
+	printf("About to assign list_create to ptr_project->boards\n");
 	ptr_project->boards = list_create();
+	printf("List_create finished!\n");
 	ptr_project->name = in_name;
 	ptr_project->description = in_description; 
 
 	//Inform it of its place in the list
-	ptr_project->list_node = list_create_node(ptr_project);
-
+	//ptr_project->list_node = list_create_node(ptr_project);
+	Node * ptr_project_node = list_create_node(ptr_project);
 	// Stuff user data into node and add it to beginning of LL
-	list_insert_node(in_app->projects, ptr_project->list_node);
+	list_insert_node(in_app->projects, ptr_project_node);
 
+	printf("Application_create_project completed!\n");
 	return ptr_project;
 }
 
@@ -53,7 +61,8 @@ int destroy_project(Application * in_app, char * in_proj_name)
 }
 
 int application_destroy_project(LinkedList * in_projects, Node * in_project_node)
-{       
+{
+	printf("Entered application_destroy_project...\n");
 	// Iterates through boards destroying,then destroys the project struct
 	project_destroy_all_boards(in_project_node->data);
 	free(in_project_node->data);
@@ -62,6 +71,7 @@ int application_destroy_project(LinkedList * in_projects, Node * in_project_node
 	
 void application_destroy_all_projects(Application * in_app)
 {
+	printf("Entered application_destroy_all_projects...\n");
 	list_destroy(in_app->projects, application_destroy_project);
 }
 
