@@ -1,14 +1,15 @@
 #ifndef TEST_COMMON_INC
-#include "test_common.h"
+#include "../framework/test_common.h"
 #endif
 
 #ifndef APPLICATION_INC
-#include "../core/application.h"
+#include "../../core/application.h"
 #endif
 
 void test_application_init( void )
 {
 
+	printf("Hello from test_application_init!\n");
 	Application * test_app = application_init();
         if(test_app == NULL){
 		debug_log(FAILED, "Application_init returned NULL pointer\n");

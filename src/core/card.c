@@ -21,7 +21,6 @@ void card_set_description(Card * in_card, char * in_description)
 
 void card_destroy_story(Card * in_card)
 {
-	printf("Entered card_destroy_story...leaf\n");
 	free(in_card->story);
 }
 

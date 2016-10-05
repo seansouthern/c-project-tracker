@@ -17,12 +17,9 @@ void list_insert_node(LinkedList * list, Node * node)
         node->next = list->head;
 	if(list->head != NULL){
 		list->head->prev = node;
-		printf("%p == list->head->prev\n", list->head->prev);
-		//printf();
 	}
 	list->head = node;
 	node->prev = NULL;
-	list_print_node(list, node);
 }
 
 Node * list_create_node(void * in_data)
@@ -87,7 +84,6 @@ int traverse(LinkedList * in_list, int (*ptr_func)(LinkedList * l, Node * n))
 		Node * tmp = x->next;
 		ptr_func(in_list, x);
 		x = tmp;
-		printf("%p x\n", x);
 	}
 	return 0;
 }

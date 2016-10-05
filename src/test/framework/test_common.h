@@ -7,9 +7,6 @@
 
 
 
-LinkedList * test_list;
-
-
 typedef enum TEST_RESULTS {
 	PASSED = 0x01,
 	FAILED = 0x02
@@ -34,7 +31,7 @@ int run_test( LinkedList * in_list, Node * in_node )
 {
 	// Declare a function pointer to the test_function in the node
 	void (*test_func)() = (void *)(in_node->data);
-	printf("Going to call test function at address %p \n", test_func);
+	printf("Runnin a test funktion! \n");
 	test_func();
 	return 0;
 }
@@ -42,24 +39,9 @@ int run_test( LinkedList * in_list, Node * in_node )
 
 void run_all_tests( LinkedList * test_list)
 {
-	printf("Running all tests...\n");
 	traverse(test_list, run_test);
-	printf("Test run finished!\n");
-
 }
 
-void add_test(char * in_file_name)
-{
-	if(test_list!= NULL){
-		Node * new_node = list_create_node();//void * data);
-		list_insert_node(test_list, new_node);
-	}
-	else{
-		
-	}
-	
-	
-}
 
 
 void test_assert_equal(int actual, int expected)

@@ -8,7 +8,6 @@
 
 int project_destroy_board(LinkedList * in_board, Node * in_board_node)
 {
-	printf("Entered project_destroy_board...\n");
 	board_destroy_all_cards(in_board_node->data);
 	free(in_board_node->data);
 	return 0;	
@@ -16,7 +15,6 @@ int project_destroy_board(LinkedList * in_board, Node * in_board_node)
 
 void project_destroy_all_boards(Project * in_project)
 {
-	printf("Entered project_destroy_all_boards...\n");
 	list_destroy(in_project->boards, project_destroy_board);
 }
 

@@ -28,16 +28,14 @@ Card * board_create_card( Board * in_board )
 
 int board_destroy_card(LinkedList * in_list, Node * in_card_node)
 {
-	printf("Entered board_destroy_card...\n");
-	card_destroy_story(in_card_node->data);
+        card_destroy_story(in_card_node->data);
 	free(in_card_node->data);
 	return 0;
 }
 
 void board_destroy_all_cards(Board * in_board)
 {
-	printf("Entered board_destroy_all_cards...\n");
-	//traverse(in_board->cards, list_print_node);
+        //traverse(in_board->cards, list_print_node);
         list_destroy(in_board->cards, board_destroy_card);
 }
 

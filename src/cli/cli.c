@@ -1,4 +1,3 @@
-
 #include <ncurses.h>
 
 
@@ -8,17 +7,19 @@
 int main(int argc,char *argv[])
 {
 	
-	WINDOW *menu_win;
+	//WINDOW *menu_win;
+	
 	
 	initscr();
-	clear();
-	raw();
-	noecho();
-
-	menu_win = newwin(HEIGHT,WIDTH,3,3);
 	
-	keypad(menu_win, TRUE);	
-
+	cbreak();
+	noecho();
+	nonl();
+	intrflush(stdscr, FALSE);
+	keypad(stdscr, TRUE);
+	
+	//menu_win = newwin(HEIGHT, WIDTH, 0, 0);
+       
 	
 	if(has_colors() == FALSE){
 		endwin();
@@ -26,24 +27,16 @@ int main(int argc,char *argv[])
 		return(-1);
 	}
 
-	start_color();
-	attron(COLOR_PAIR(6));
+//	start_color();
+//	attron(COLOR_PAIR(6));
 
-	printw("Press F1 to exit.");
+	const char * strong = "Press F1 to exit";
+	
+	printw(strong);
 	refresh();
 
+	getchar();
 
-	while(getch() != KEY_F(1) )
-	{
-		if(getch() == KEY_UP){
-			
-		}
-		else if(getch() == KEY_DOWN){
-
-		}
-		
-	}
-	
 	endwin();
 	return 0;
 }

@@ -4,6 +4,8 @@
 #include "node.h"
 #endif
 
+#include <stdarg.h>
+
 typedef struct  {
 	Node * head;
 	int size;

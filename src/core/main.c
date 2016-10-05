@@ -1,17 +1,15 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
 #include "application.h"
 
-int main(int argc, char** argv)
+void  test_function( void )
 {
 
-	printf("Main begin.\n\n");
-	char c = getchar();
-
 	Application * app = application_init();
-	
+/*	
 	printf("About to application_create_project...\n");
 	Project * my_proj = application_create_project(
 		app, "My proj", "This is my proj.");
@@ -63,16 +61,11 @@ int main(int argc, char** argv)
 	Card * my_cardb14 = board_create_card(my_board25);
 	Card * my_cardb15 = board_create_card(my_board25);
         
-	//Story * my_story = card_create_story(my_card);
-	printf("About to application_destroy_all_projects...\n");
-	application_destroy_all_projects(app);
-	printf("Work done.\n\n");
-	c = getchar();
-	//application_destructor(app);
-	free(app);
+*/
+        application_destructor(app);
 
 	
-	return 0;
+	return;
 }
 
 
