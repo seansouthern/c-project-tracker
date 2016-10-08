@@ -1,9 +1,9 @@
 #ifndef TEST_COMMON_INC
-#include "test_common.h"
+#include "../framework/test_common.h"
 #endif
 
 #ifndef APPLICATION_INC
-#include "../core/application.h"
+#include "../../core/application.h"
 #endif
 
 void test_application_create_project( void )

@@ -9,7 +9,6 @@
 void test_application_init( void )
 {
 
-	printf("Hello from test_application_init!\n");
 	Application * test_app = application_init();
         if(test_app == NULL){
 		debug_log(FAILED, "Application_init returned NULL pointer\n");

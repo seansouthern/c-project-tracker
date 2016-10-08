@@ -2,8 +2,13 @@
 #define TEST_COMMON_INC
 #endif
 
-#include <stdio.h>
+#ifndef LINKEDLIST_INC
 #include "linkedlist.h"
+#endif
+
+
+#include <stdio.h>
+
 
 
 
@@ -27,12 +32,27 @@ void debug_log(results_t TEST_STATE, char * details)
 	
 }
 
+
+int generate_func_pointer_includes(LinkedList * func_names, LinkedList * fm)
+{
+	
+
+	return 0 ;	
+}
+
+
+int add_test(LinkedList * test_list, void(*test_func)(void))
+{
+	list_insert_node(test_list, list_create_node(test_func));
+	
+	return 0;
+}
+
+
 int run_test( LinkedList * in_list, Node * in_node )
 {
-	// Declare a function pointer to the test_function in the node
-	void (*test_func)() = (void *)(in_node->data);
-	printf("Runnin a test funktion! \n");
-	test_func();
+	void (*test_func)() = in_node->data;
+	test_func();	
 	return 0;
 }
 
@@ -41,8 +61,6 @@ void run_all_tests( LinkedList * test_list)
 {
 	traverse(test_list, run_test);
 }
-
-
 
 void test_assert_equal(int actual, int expected)
 {

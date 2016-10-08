@@ -1,23 +1,23 @@
 CC=gcc
 CORESRC=./src/core
-ODIR=./src
 EXDIR=./bin
 CLISRC=./src/cli
 LIBDIR=./lib
-BINDIR=./bin
+TESTSRC=./src/test
 
-all: tests core 
+all: testgen testrun core
 
 clean:
-	-rm $(BINDIR)/*
+	-rm $(EXDIR)/*
+	-rm $(TESTSRC)/framework/scanned_tests.h
 
 core:
 	$(CC) -o $(EXDIR)/core $(CORESRC)/main.c -I$(CORESRC)
 	$(CC) -o $(EXDIR)/cli  $(CLISRC)/cli.c -lncurses -lpanel -I$(CLISRC)
 
 
-tests:
+testgen:
+	$(CC) -o $(EXDIR)/generate_includes $(TESTSRC)/framework/test_scan.c
 
-
-
-
+testrun:
+	$(CC) -o $(EXDIR)/run_tests $(TESTSRC)/framework/driver.c -I$(TESTSRC)/framework/
