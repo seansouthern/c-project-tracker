@@ -18,6 +18,7 @@ typedef struct {
 typedef struct {
 	char * name;
 	char * description;
+	int iteration_length;
 
 } ProjectAttributes;
 

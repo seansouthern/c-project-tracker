@@ -9,12 +9,7 @@
 void test_application_create_project( void )
 {
         Application * test_app = application_init();
-
-	// Empty case
-	
 	Project * test_proj = application_create_project(test_app, "", "");
-
-	test_assert_not_equal(test_proj, NULL, __FILE__);
-	
-
+	test_assert_pointer_not_equal(test_proj, NULL, __FILE__);
+	application_destroy_all_projects(test_app);
 }

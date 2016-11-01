@@ -6,10 +6,15 @@
 #include "../../core/application.h"
 #endif
 
-void test_application_init( void )
+void test_create_iteration()
 {
-	Application * test_app = application_init();
-	test_assert_pointer_not_equal(test_app, NULL, __FILE__);
+        Application * test_app = application_init();
+	Project * test_project = application_create_project(test_app, "", "");
+	
+	
 	application_destructor(test_app);
-        
+	
+	
+
+
 }

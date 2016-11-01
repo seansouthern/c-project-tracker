@@ -11,7 +11,6 @@
 int main (int argc, char ** argv)
 {
 	char b = getchar();
-
         
 	printf("Going to run all tests...\n");
 	run_all_tests(initialize_generated_tests());

@@ -1,7 +1,3 @@
-//#ifndef TEST_COMMON_INC
-//#include "test_common.h"
-//#endif
-
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
@@ -20,8 +16,9 @@ int strip_extension(LinkedList * in_list, Node * in_node)
 {	
 	// Strip file extensions from the node's filename data to get the function name
 	char * temp_string = calloc(255, sizeof(char));
-	strcpy(temp_string, (char*)in_node->data);
-
+        char * node_string = (char * ) in_node->data;
+	strncpy(temp_string, node_string, 255);
+	
 	if(strtok(temp_string, ".") != '\0'){
 		in_node->data = temp_string;
 	}
@@ -39,13 +36,13 @@ LinkedList * scan_for_tests( void )
 {
 	LinkedList * valid_files = list_create();
         struct dirent **namelist;
-        //printf("%s is this function's file\n", __FILE__);
-	
+        
 	int n = scandir( "./src/test/tests/", &namelist, NULL, alphasort);
 	
 	if (n < 0){
 		perror("scandir");
-		return valid_files;
+	      	list_destroy(valid_files, list_delete_node);
+		
 	}
 	else {
 		while (n--) {
@@ -57,7 +54,7 @@ LinkedList * scan_for_tests( void )
 						z++;
 						term = namelist[n]->d_name[z];
 					}
-					if(namelist[n]->d_name[z-1] == 'c' || namelist[n]->d_name[z-1] == 'h'){
+					if((namelist[n]->d_name[z-1] == 'c' || namelist[n]->d_name[z-1] == 'h') && namelist[n]->d_name[z-2] =='.'){
 						list_insert_node(valid_files, list_create_node(namelist[n]->d_name));
 					}
 				}
@@ -67,9 +64,7 @@ LinkedList * scan_for_tests( void )
 		free(namelist);
 	}
 	LinkedList * function_names = strip_extensions(valid_files);
-	traverse(function_names, list_print_node);
-        
-	
+
 	return function_names;
 }
 
@@ -95,8 +90,7 @@ int print_test_includes(LinkedList * in_list, Node * in_node)
 
 int print_pointer_declarations(LinkedList *in_list, Node * in_node)
 {
-	char * function_name = (char *) in_node->data;
-	
+	char * function_name =  in_node->data;
 	fprintf(get_scan_file(), "void (*p_%s)(void) = %s;\n", function_name, function_name );
 	fprintf(get_scan_file(), "list_insert_node(final_test_list, list_create_node(p_%s));\n", function_name);
 	return 0;

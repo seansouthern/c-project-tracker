@@ -18,6 +18,13 @@ core:
 
 testgen:
 	$(CC) -o $(EXDIR)/generate_includes $(TESTSRC)/framework/test_scan.c
+	$(EXDIR)/generate_includes
+	rm $(EXDIR)/generate_includes
 
 testrun:
-	$(CC) -o $(EXDIR)/run_tests $(TESTSRC)/framework/driver.c -I$(TESTSRC)/framework/
+	$(CC) -o $(EXDIR)/run_all_tests $(TESTSRC)/framework/driver.c -I$(TESTSRC)/framework/
+
+tests:
+	make testgen
+	make testrun
+	$(EXDIR)/run_all_tests

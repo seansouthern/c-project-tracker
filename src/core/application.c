@@ -1,3 +1,7 @@
+#ifndef APPLICATION_INC
+#include "application.h"
+#endif
+
 #ifndef LINKEDLIST_INC
 #include "linkedlist.h"
 #endif
@@ -6,12 +10,10 @@
 #include "node.h"
 #endif
 
-#ifndef APPLICATION_INC
-#include "application.h"
-#endif
 
 
-Application * application_init()
+
+Application * application_init( void )
 {
 	Application * app = calloc(1, sizeof(Application));
 	app->projects = list_create();
@@ -26,10 +28,8 @@ void application_destructor(Application * in_app)
 
 Project * application_create_project(Application * in_app, char * in_name, char * in_description)
 {
-
 	Project * ptr_project = calloc(1, sizeof(Project));
-     
-	unsigned long proj=(unsigned long)ptr_project;
+    
         if ( ptr_project == NULL) {
 		fprintf(stderr, "calloc failed for Project object\n");
 		return((Project *)-1);

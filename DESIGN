@@ -1,0 +1,20 @@
+DESIGN NOTES
+-----------------------------------------------------------------------------
+Currently, the app is separated into a Core code section, a Test framework,
+and space has been set aside for a CLI and GUI.
+
+The Core folder contains code that defines basic data structures and provides
+functions for creation, update, and deletion.
+
+The Test folder contains a testing harness that reads and compiles C source
+files put into the tests subfolder.
+
+The GUI folder will contain code written in a GUI toolkit, possibly Qt.
+
+The CLI folder will contain code written using the Curses toolkit.
+
+GUI & CLI
+There should be menu options for creating and opening projects. Once one of
+these options has been selected a project will come into focus and more
+options will open up with that particular object as the context. Navigation
+commands should be included to allow for easier switching between contexts.
